@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 import MonacoEditor from "@monaco-editor/react";
 import axios from "axios";
 
-const socket = io("http://localhost:8003");
+const socket = io("https://code-collab-server-78yy.onrender.com");
 
 function Editor() {
 
@@ -53,7 +53,7 @@ function Editor() {
   try {
 
     const response = await axios.post(
-      "http://localhost:8003/run-code",
+      "https://code-collab-server-78yy.onrender.com/run-code",
       {
         language: language,
         code: code,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:8003");
+const socket = io("https://code-collab-server-78yy.onrender.com");
 
 function Live() {
 
