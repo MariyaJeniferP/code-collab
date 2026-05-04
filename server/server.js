@@ -8,8 +8,6 @@ const axios = require("axios");
 
 
 const app = express();
-app.use(cors());
-
 app.use(cors({
    origin: [
     "http://localhost:5175",
@@ -18,7 +16,8 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }));
-
+app.options("*", cors());
+app.use(express.json());
 mongoose.connect("mongodb://127.0.0.1:27017/codecollab");
 console.log("MongoDB connected");
 
@@ -74,9 +73,6 @@ const io = new Server(server, {
     methods: ["GET", "POST"]
   },
 });
-
-
-app.use(express.json());
 
 app.post("/signup", async (req, res) => {
 
