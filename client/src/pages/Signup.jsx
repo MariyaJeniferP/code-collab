@@ -11,47 +11,34 @@ function Signup(){
   const [error,setError] = useState("");
 
   const handleSignup = async () => {
-
-    // VALIDATION
+  try {
     if(!name || !email || !password){
       setError("All fields are required");
       return;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if(!emailPattern.test(email)){
-      setError("Enter a valid email");
-      return;
-    }
-
-    if(password.length < 6){
-      setError("Password must be at least 6 characters");
-      return;
-    }
-
-    setError("");
-
-    const response = await fetch("http://localhost:8002/signup",{
+    const response = await fetch("https://code-collab-server-78yy.onrender.com/signup",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
-      body:JSON.stringify({
-        name,
-        email,
-        password
-      })
+      body: JSON.stringify({ name, email, password })
     });
+
+    if(!response.ok){
+      throw new Error("Server error");
+    }
 
     const data = await response.json();
 
     alert(data.message);
-
     navigate("/signin");
 
-  };
-
+  } catch (err) {
+    console.error(err);
+    setError("Server not responding. Try again.");
+  }
+};
   return(
 
     <div className="container">

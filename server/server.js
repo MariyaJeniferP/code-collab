@@ -10,6 +10,15 @@ const axios = require("axios");
 const app = express();
 app.use(cors());
 
+app.use(cors({
+   origin: [
+    "http://localhost:5175",
+    "https://code-collab-tau-six.vercel.app"
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 mongoose.connect("mongodb://127.0.0.1:27017/codecollab");
 console.log("MongoDB connected");
 
@@ -58,7 +67,11 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+     origin: [
+      "http://localhost:5175",
+      "https://code-collab-tau-six.vercel.app"
+    ],
+    methods: ["GET", "POST"]
   },
 });
 
@@ -198,7 +211,7 @@ io.on("connection", (socket) => {
 
 });
 
-const PORT = process.env.PORT || 8003;
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

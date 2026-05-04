@@ -8,51 +8,39 @@ function Signin() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [error,setError] = useState("");
-
   const handleLogin = async () => {
-    console.log("Function started");
-    // FORM VALIDATION
+  try {
     if(!email || !password){
       setError("All fields are required");
       return;
     }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if(!emailPattern.test(email)){
-      setError("Enter a valid email address");
-      return;
-    }
-
-    setError("");
 
     const response = await fetch("https://code-collab-server-78yy.onrender.com/signin",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
-      body: JSON.stringify({
-        email,
-        password
-      })
+      body: JSON.stringify({ email, password })
     });
+
+    if(!response.ok){
+      throw new Error("Server error");
+    }
 
     const data = await response.json();
 
-    console.log("Response:", data);
-
     if(data.success){
-      console.log("Navigating now...");
       localStorage.setItem("userName", data.name);
-
       navigate("/dashboard");
-
-    }else{
+    } else {
       setError(data.message);
     }
 
-  };
-
+  } catch (err) {
+    console.error(err);
+    setError("Server not responding. Try again in few seconds.");
+  }
+};
   return (
 
     <div className="container">
