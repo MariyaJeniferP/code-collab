@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Code Collaboration Test</title>
+</head>
+
+<body>
+
+<h2>Simple Code Collaboration</h2>
+
+<textarea id="editor" rows="20" cols="80"></textarea>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+const socket = io();
+const editor = document.getElementById("editor");
+
+editor.addEventListener("input", () => {
+  socket.emit("message", editor.value);
+});
+
+socket.on("message", (data) => {
+  editor.value = data;
+});
+</script>
+
+</body>
+</html>

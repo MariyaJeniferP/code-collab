@@ -1,0 +1,106 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px;
+  background: linear-gradient(90deg,#2c4a8a,#2e5aa8);
+  color: white;
+}
+
+/* Left */
+
+.hero-left {
+  max-width: 550px;
+}
+
+.hero-left h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-left span {
+  color: #a855f7;
+}
+
+.hero-left p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+
+.hero-buttons button {
+  padding: 12px 22px;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.start-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+.join-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+/* Right */
+
+.hero-right img {
+  width: 750px;
+  max-width: 100%;
+}
+
+/* Stats */
+
+.hero-stats {
+  display: flex;
+  margin-top: 30px;
+  gap: 40px;
+}
+
+/* Animation */
+
+.hero-left {
+  animation: slideFromBottom 1s ease-out;
+}
+
+.hero-right {
+  animation: slideFromBottom 1s ease-out;
+}
+
+/* Left Animation */
+
+@keyframes slideFromBottom {
+
+  from {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+}
+
+/* Right Animation */
+
+@keyframes slideFromBottomm {
+
+  from {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+}
