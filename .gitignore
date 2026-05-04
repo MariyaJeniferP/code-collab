@@ -1,0 +1,8 @@
+node_modules/
+*.exe
+*.out
+main_*.c
+main_*.cpp
+main_*.java
+temp/
+.env
